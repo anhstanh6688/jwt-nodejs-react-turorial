@@ -1,0 +1,7 @@
+// để hoạt động được cần cấu hình 
+// tạo biến object, key là presets và key là @babel/preset-env
+{
+    "presets": [
+        "@babel/preset-env"
+    ]
+}
