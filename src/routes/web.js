@@ -4,11 +4,7 @@ import express from "express";
 import homeController from "../controller/homeController";
 const router = express.Router();
 
-// định nghĩa 1 function 
-/**
- * 
- * @param {*} app -express app 
- */
+
 
 const handleHelloWord = (req, res) => {
     return res.send("Hello work");
@@ -20,7 +16,9 @@ const initWebRouters = (app) => {
     router.get("/", homeController.handleHelloWord);
     // hiển thị giao diện người dùng khi "about" 
     router.get("/user", homeController.handleUserPage);
-
+    // get khác gì post? 
+    // get lấy data từ server đẩy lên client, post lấy data từ cliet đẩy lên server 
+    router.post("/users/create-user", homeController.handleCreateNewUser);
     // đường link sẽ bắt đầu từ trang / là trang home 
     return app.use("/", router);
 

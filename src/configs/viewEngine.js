@@ -1,9 +1,6 @@
 import express from "express";
 
-/**
- * 
- * @param {*} app -express app 
- */
+
 const configViewEngine = (app) => { //cũng giống 1 function
     // app sẽ tới public 
     app.use(express.static('./src/public'));

@@ -11,7 +11,11 @@ const handleUserPage = (req, res) => {
     return res.render("user.ejs");
 }
 
+const handleCreateNewUser = (req, res) => {
+    console.log(">>> check request: ", req.body);
+    return res.send("handleCreateNewUser");
+}
 // key word module export để export ra 
 module.exports = {
-    handleHelloWord, handleUserPage
+    handleHelloWord, handleUserPage, handleCreateNewUser
 }
