@@ -20,6 +20,9 @@ const initWebRouters = (app) => {
     // get lấy data từ server đẩy lên client, post lấy data từ cliet đẩy lên server 
     router.post("/users/create-user", homeController.handleCreateNewUser);
     // đường link sẽ bắt đầu từ trang / là trang home 
+
+    router.post("/delete-user/:id", homeController.handleDeleteUser);
+    router.get("/update-user/:id", homeController.getUpdateUserPage);
     return app.use("/", router);
 
 }
