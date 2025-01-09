@@ -14,7 +14,7 @@ module.exports = {
     //đống code giúp fake data
     //bản chất nó là 1 mảng
     //bulkInsert : chèn nhiều dữ liệu vào DB 1 lúc, tham chiếu tới module users
-    await queryInterface.bulkInsert('Users',
+    await queryInterface.bulkInsert('User',
       [
         {
           email: 'John Doe',

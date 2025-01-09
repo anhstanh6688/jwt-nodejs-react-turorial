@@ -3,7 +3,7 @@ module.exports = {
   //kiểu tạo table
   //hàm up có ý nghĩa khi muốn thao tác với db thì sẽ chạy vào up
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('User', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -32,6 +32,6 @@ module.exports = {
   //kiểu xóa table
   //khi muốn quay lại, back lại thì sd down
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('User');
   }
 };
