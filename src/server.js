@@ -2,12 +2,11 @@ import express from "express";
 // khai báo câu lệnh này mới chạy được câu lệnh 11 
 require("dotenv").config();
 // import nnhững hàm vừa tạo ở web.js và configViewEngine.js 
-import configViewEngine from "./configs/viewEngine";
+import configViewEngine from "./config/viewEngine";
 import initWebRouters from "./routes/web";
-
 require("dotenv").config();
 import bodyParser from "body-parser";
-
+// import connection from "./config/connectDB";
 
 // định nghĩa 1 cái đối tượng của express 
 // tẠO 1 server 
@@ -18,6 +17,10 @@ configViewEngine(app);
 //config body-parser cần để chỉ thu nhận dữ liệu quan trọng
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+//test connectionDB
+// connection();
+
 
 //init web routers
 initWebRouters(app);

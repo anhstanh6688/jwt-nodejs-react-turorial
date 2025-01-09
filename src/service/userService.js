@@ -71,7 +71,6 @@ const getUserById = async (id) => {
 
     try {
         const [rows, fiels] = await connection.execute('Select * FROM users WHERE id=?', [id]);
-        console.log(">>> check row: ", row);
         return rows;
     } catch (error) {
         console.log(">>> check error: ", error);
@@ -79,8 +78,20 @@ const getUserById = async (id) => {
 }
 
 
+const updateUserInfor = async (email, username, id) => {
+    const connection = await mysql.createConnection({ host: 'localhost', user: 'root', database: 'jwt', Promise: bluebird });
+
+    try {
+        const [rows, fiels] = await connection.execute('UPDATE users SET email = ?, username = ? WHERE id = ?', [email, username, id]);
+        return rows;
+    } catch (error) {
+        console.log(">>> check error: ", error);
+    }
+}
+
 
 // để sử dụng được hàm cần phải export ra 
 module.exports = {
-    CreateNewUser, getUserList, deleteUser, getUserById
+    CreateNewUser, getUserList, deleteUser, getUserById,
+    updateUserInfor
 }
