@@ -10,7 +10,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      // define association here định nghĩa mqh ở đây
+      //định nghĩa mối quan hệ 11 giữa User và Group
+      User.belongsTo(models.Group);
+      User.belongsToMany(models.Project, { through: 'Project_User' });
     }
   };
   //object relatioal mapping
@@ -19,7 +22,11 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    username: DataTypes.STRING
+    username: DataTypes.STRING,
+    address: DataTypes.STRING,
+    sex: DataTypes.STRING,
+    phone: DataTypes.STRING, //ko nên để number
+    groupId: DataTypes.INTEGER //th này liên kết tới bảng group, và id ở migrations thì ở kiểu Interger
   }, {
     sequelize,
     modelName: 'User',

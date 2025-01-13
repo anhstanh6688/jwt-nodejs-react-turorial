@@ -3,35 +3,25 @@ module.exports = {
   //kiểu tạo table
   //hàm up có ý nghĩa khi muốn thao tác với db thì sẽ chạy vào up
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('User', {
+    await queryInterface.createTable('Project', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      email: {
+      name: {
         type: Sequelize.STRING
       },
-      password: {
+      description: {
         type: Sequelize.STRING
       },
-      username: {
+      startDate: {
         type: Sequelize.STRING
       },
-      address: {
-        type: Sequelize.STRING
+      customerId: {
+        type: Sequelize.INTEGER
       },
-      sex: {
-        type: Sequelize.STRING
-      },
-      phone: {
-        type: Sequelize.STRING
-      },
-      groupId: {
-        type: Sequelize.INTEGER //để ý th này theo trường id
-      },
-
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -45,6 +35,6 @@ module.exports = {
   //kiểu xóa table
   //khi muốn quay lại, back lại thì sd down
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('User');
+    await queryInterface.dropTable('Project');
   }
 };

@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import mysql from "mysql2/promise";
 import bluebird from "bluebird";
 import db from '../models/index';
+import { noRawAttributes } from "sequelize/lib/utils/deprecations";
 const salt = bcrypt.genSaltSync(10);
 
 
@@ -36,6 +37,35 @@ const CreateNewUser = async (email, password, username) => {
 }
 
 const getUserList = async () => {
+
+    //test relationship
+    let newUser = await db.User.findOne({
+        where: { id: 1 }, //hashcode cho id = 1 
+        //thuộc tính giúp chỉ lấy ra kết quả mình muốn
+        attributes: ["id", "username", "email"],
+        // include: db.Group,
+        include: { model: db.Group, attributes: ["name", "description"], },
+        raw: true, //trả ra 1 object
+        nest: true //để ko bị lặp lại chữ Group. Group., ...
+    })
+
+    //sau khi có Group ( là dev,..) rồi thì cần biết nó có role gì
+    // let roles = await db.Group.findOne({
+    //     where: { id: 1 },
+    //     include: { model: db.Role },
+    //     raw: true,
+    //     nest: true
+    // })
+
+    let r = await db.Role.findAll({
+        include: { model: db.Group, where: { id: 1 } },
+        raw: true,
+        nest: true
+    })
+
+    console.log(">>> check new users: ", newUser)
+    console.log(">>> check new roles: ", r)
+
     let users = [];
     users = await db.User.findAll();
     return users;

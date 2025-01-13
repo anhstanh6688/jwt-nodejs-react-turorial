@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class test extends Model {
+  class Role extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,15 +11,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Role.belongsToMany(models.Group, { through: 'Group_Role' });
     }
   };
-  test.init({
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    email: DataTypes.STRING
+  //object relatioal mapping
+  // hàm này là kiểu dữ liệu của các trường luôn 
+  // đặc biệt ko cần khai báo trường id, sẽ tự sinh
+  Role.init({
+    url: DataTypes.STRING,
+    description: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'test',
+    modelName: 'Role',
   });
-  return test;
+  return Role;
 };
